@@ -1,7 +1,7 @@
 """
 Plugin definition for the guidelines OPAL plugin
 """
-from opal.utils import OpalPlugin
+from opal.core.plugins import OpalPlugin
 
 from guidelines.urls import urlpatterns
 
