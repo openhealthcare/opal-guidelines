@@ -13,4 +13,4 @@ bower_components
 *~
 *#
 *.#
-opal_{{ name }}.egg-info
+opal_guidelines.egg-info
