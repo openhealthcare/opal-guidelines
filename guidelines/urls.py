@@ -7,5 +7,5 @@ from guidelines import views
 
 urlpatterns = patterns(
     '',
-    #url(pattern, view)
+    url(r'templates/modals/select_guideline.html', views.SelectGuidelineModalView.as_view()),
 )

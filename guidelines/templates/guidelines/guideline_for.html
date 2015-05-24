@@ -1,0 +1,9 @@
+{% load forms %}
+<span ng-show="[{% for i in items %}'{{ i }}'{% if not forloop.last %},{% endif %}{% endfor %}].indexOf({{ where }}) != -1">
+  <br />
+  <a href="" ng-click="open_modal('SelectGuidelineCtrl', '/templates/modals/select_guideline.html', 'lg', {diagnosis: {{ where }}})">
+    {% icon "fa-book" %}
+    Guideline
+  </a>
+</span>
+ 

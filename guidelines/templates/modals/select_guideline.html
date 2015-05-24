@@ -1,0 +1,32 @@
+{% extends 'modal_base.html' %}
+
+{% load forms %}
+
+{% block icon_name %}fa fa-book{% endblock %}
+{% block title %}Select Guideline{% endblock %}
+{% block modal_body %}
+  <table class="table table-bordered table-striped table-hover">
+    <thead>
+      <tr>
+        <td></td>
+        <td>Name</td>
+        <td>Source</td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for g in guidelines %}
+        <tr class="pointer" ng-click="open_guideline('{{ g.link }}')"
+            ng-show="[{% for d in g.diagnosis.all %}'{{ d }}'{% if not forloop.last %},{% endif %}{% endfor %}].indexOf(diagnosis) != -1"
+            >
+            <td>{% icon 'fa-external-link' %}</td>
+            <td>{{ g.source }}</td>
+            <td>{{ g.name }}</td>
+            <td>{% icon 'fa-file-pdf-o' %}</td>
+      {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}
+{% block modal_save %}{% endblock %}
+{% block modal_another %}{% endblock %}

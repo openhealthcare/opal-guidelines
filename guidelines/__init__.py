@@ -11,6 +11,9 @@ class GuidelinesPlugin(OpalPlugin):
     """
     urls = urlpatterns
     javascripts = {
+        'opal.controllers': [
+            'js/guidelines/controllers/select_guideline.js'
+        ],
         # Add your javascripts here!
         'opal.guidelines': [
             # 'js/guidelines/app.js',
