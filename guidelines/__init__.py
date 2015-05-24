@@ -1,11 +1,12 @@
 """
 Plugin definition for the guidelines OPAL plugin
 """
-from opal.core.plugins import OpalPlugin
+from opal.core import plugins
 
+from guidelines import api
 from guidelines.urls import urlpatterns
 
-class GuidelinesPlugin(OpalPlugin):
+class GuidelinesPlugin(plugins.OpalPlugin):
     """
     Main entrypoint to expose this plugin to our OPAL application.
     """
@@ -22,6 +23,11 @@ class GuidelinesPlugin(OpalPlugin):
         ]
     }
 
+    apis = [
+        ('guideline', api.GuidelineViewSet),
+        ('guideline_consultation', api.ConsultationViewSet)
+    ]
+    
     def restricted_teams(self, user):
         """
         Return any restricted teams for particualr users that our
@@ -47,3 +53,7 @@ class GuidelinesPlugin(OpalPlugin):
         by our plugin.
         """
         return {}
+
+    
+plugins.register(GuidelinesPlugin)
+
