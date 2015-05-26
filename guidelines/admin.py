@@ -11,7 +11,7 @@ class GuidelineAdmin(reversion.VersionAdmin):
     search_fields = 'name',
 
 class GuidelineConsultationAdmin(reversion.VersionAdmin):
-    pass
+    list_display= "guideline", "user", "consulted"
 
 admin.site.register(models.Guideline, GuidelineAdmin)
 admin.site.register(models.GuidelineConsultation, GuidelineConsultationAdmin)
