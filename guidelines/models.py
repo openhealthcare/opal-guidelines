@@ -26,7 +26,7 @@ class GuidelineConsultation(models.Model):
     """
     guideline   = models.ForeignKey(Guideline)
     user        = models.ForeignKey(User)
-    conusulted  = models.DateTimeField(auto_now_add=True)
+    consulted  = models.DateTimeField(auto_now_add=True)
 
 
     def __unicode__(self):
