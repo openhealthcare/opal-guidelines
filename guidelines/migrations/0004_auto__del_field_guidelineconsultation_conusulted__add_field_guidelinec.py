@@ -13,7 +13,7 @@ class Migration(SchemaMigration):
 
         # Adding field 'GuidelineConsultation.consulted'
         db.add_column(u'guidelines_guidelineconsultation', 'consulted',
-                      self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, default=datetime.datetime(2015, 5, 26, 0, 0), blank=True),
+                      self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, default=datetime.datetime.now, blank=True),
                       keep_default=False)
 
 
