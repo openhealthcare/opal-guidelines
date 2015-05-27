@@ -9,8 +9,8 @@
     <thead>
       <tr>
         <td></td>
-        <td>Source</td>
         <td>Name</td>
+        <td>Source</td>
         <td></td>
       </tr>
     </thead>
@@ -20,8 +20,8 @@
             ng-show="[{% for d in g.diagnosis.all %}'{{ d }}'{% if not forloop.last %},{% endif %}{% endfor %}].indexOf(diagnosis) != -1"
             >
             <td>{% icon 'fa-external-link' %}</td>
-            <td>{{ g.source }}</td>
             <td>{{ g.name }}</td>
+            <td>{{ g.source }}</td>
             <td>{% icon 'fa-file-pdf-o' %}</td>
       {% endfor %}
       </tr>
