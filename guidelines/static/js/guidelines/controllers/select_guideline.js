@@ -13,7 +13,6 @@ angular.module('opal.controllers').controller(
                 where: where
             }).then(function(){
                 $window.open(where, '_blank');
-                $scope.cancel();
             });
         };
         
