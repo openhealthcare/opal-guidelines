@@ -16,6 +16,9 @@ class Guideline(models.Model):
     diagnosis = models.ManyToManyField(Condition, help_text="Canonical terms only")
     source    = models.CharField(max_length=200)
 
+    class Meta:
+        app_label = 'guidelines'
+    
     def __unicode__(self):
         return self.name
 
@@ -28,6 +31,8 @@ class GuidelineConsultation(models.Model):
     user        = models.ForeignKey(User)
     consulted  = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        app_label = 'guidelines'
 
     def __unicode__(self):
         return u'{0} consulted by {1} on {2}'.format(

@@ -26,8 +26,8 @@ class GuidelinesPlugin(plugins.OpalPlugin):
     apis = [
         ('guideline', api.GuidelineViewSet),
         ('guideline_consultation', api.ConsultationViewSet)
-    ]
-    
+    ]        
+
     def restricted_teams(self, user):
         """
         Return any restricted teams for particualr users that our
