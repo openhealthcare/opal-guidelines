@@ -1,0 +1,16 @@
+language: python
+python:
+  - "2.7"
+install:
+  - python setup.py develop
+  - pip install -r requirements.txt
+  - pip install coveralls
+  - npm install karma karma-coverage karma-jasmine karma-firefox-launcher
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+script:
+  - opal test py --coverage
+after_success: coveralls
+notifications:
+  slack: ohcuk:6spaME3CB7f2PGrMAcklYWqp
