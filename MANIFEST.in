@@ -1,0 +1,2 @@
+recursive-include guidelines/static *
+recursive-include guidelines/templates *
