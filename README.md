@@ -1,16 +1,16 @@
 This is guidelines - an [OPAL](https://github.com/openhealthcare/opal) plugin.
 
-# Installation 
+# Installation
 
 Install this module
 
 Add 'guidelines' to installed apps.
 
-Run 
+Run
 
    $ python manage.py migrate
 
-Add the guideline template tag wherever you want to display guidelines e.g. 
+Add the guideline template tag wherever you want to display guidelines e.g.
 
     <!-- ./yourapp/templates/records/diagnosis.html -->
     {% load guideline %}
@@ -19,4 +19,3 @@ Add the guideline template tag wherever you want to display guidelines e.g.
       [[item.condition]]
     <span ng-show="item.details">([[item.details]])</span>
     {% guideline_for "item.condition" %}
-
