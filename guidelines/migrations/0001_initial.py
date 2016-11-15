@@ -7,6 +7,10 @@ from django.db import models
 
 class Migration(SchemaMigration):
 
+    dependencies = [
+        ('opal', '0025_merge'),
+    ]
+
     def forwards(self, orm):
         # Adding model 'Guideline'
         db.create_table(u'guidelines_guideline', (
