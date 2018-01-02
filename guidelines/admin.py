@@ -2,15 +2,15 @@
 Admin for Guideline models
 """
 from django.contrib import admin
-import reversion
+from reversion.admin import VersionAdmin
 
 from guidelines import models
 
-class GuidelineAdmin(reversion.VersionAdmin):
+class GuidelineAdmin(VersionAdmin):
     filter_horizontal = 'diagnosis',
     search_fields = 'name',
 
-class GuidelineConsultationAdmin(reversion.VersionAdmin):
+class GuidelineConsultationAdmin(VersionAdmin):
     list_display= "guideline", "user", "consulted"
 
 admin.site.register(models.Guideline, GuidelineAdmin)
