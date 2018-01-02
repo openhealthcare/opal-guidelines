@@ -1,11 +1,10 @@
 """
-Urls for the guidelines OPAL plugin
+Urls for the guidelines Opal plugin
 """
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from guidelines import views
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'templates/modals/select_guideline.html', views.SelectGuidelineModalView.as_view()),
-)
+]
