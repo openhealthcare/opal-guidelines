@@ -1,5 +1,8 @@
 This is guidelines - an [OPAL](https://github.com/openhealthcare/opal) plugin.
 
+[![Build
+Status](https://travis-ci.org/openhealthcare/opal-guidelines.png?branch=v0.4.0)](https://travis-ci.org/openhealthcare/opal-guidelines)
+
 # Installation
 
 Install this module
