@@ -1,8 +1,12 @@
 """
-Standalone test runner for wardrounds plugin
+Standalone test runner for guidelines plugin
 """
 import os
 import sys
+from opal.core import application
+
+class Application(application.OpalApplication):
+    pass
 
 from django.conf import settings
 
@@ -15,11 +19,11 @@ settings.configure(DEBUG=True,
                    OPAL_OPTIONS_MODULE='guidelines.tests.dummy_options_module',
                    ROOT_URLCONF='guidelines.urls',
                    STATIC_URL='/assets/',
-                   STATIC_ROOT='static',
                    STATICFILES_FINDERS=(
-                       'django.contrib.staticfiles.finders.FileSystemFinder',
-                       'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-                       'compressor.finders.CompressorFinder',),
+                        'django.contrib.staticfiles.finders.FileSystemFinder',
+                        'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+                        'compressor.finders.CompressorFinder',
+                    ),
                    COMPRESS_ROOT='/tmp/',
                    MIDDLEWARE_CLASSES=(
                        'django.middleware.common.CommonMiddleware',
@@ -32,32 +36,54 @@ settings.configure(DEBUG=True,
                        'reversion.middleware.RevisionMiddleware',
                        'axes.middleware.FailedLoginMiddleware',
                    ),
-                   INSTALLED_APPS=('django.contrib.auth',
-                                   'django.contrib.contenttypes',
-                                   'django.contrib.sessions',
-                                   'django.contrib.admin',
-                                   'django.contrib.staticfiles',
-                                   'compressor',
-                                   'opal',
-                                   'opal.tests',
-                                   'guidelines',),
+                   INSTALLED_APPS = (
+                        'django.contrib.auth',
+                        'django.contrib.contenttypes',
+                        'django.contrib.sessions',
+                        'django.contrib.staticfiles',
+                        'django.contrib.admin',
+                        'compressor',
+                        'reversion',
+                        'opal',
+                        'opal.tests',
+                        'guidelines',
+                   ),
                    MIGRATION_MODULES={
-                       'opal': 'opal.nomigrations'
-                   }
+                       'opal': 'opal.nomigrations',
+                       'guidelines': 'guidelines.nomigrations',
+                   },
+                   TEMPLATES = [
+                    {
+                        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                        'DIRS': [
+                            # insert your TEMPLATE_DIRS here
+                        ],
+                        'APP_DIRS': True,
+                        'OPTIONS': {
+                            'context_processors': [
+                                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                                # list if you haven't customized them:
+                                'django.contrib.auth.context_processors.auth',
+                                'django.template.context_processors.debug',
+                                'django.template.context_processors.i18n',
+                                'django.template.context_processors.media',
+                                'django.template.context_processors.static',
+                                'django.template.context_processors.tz',
+                                'django.contrib.messages.context_processors.messages',
+                            ],
+                        },
+                    },
+                ],
 )
-
-from opal.core import application
-class Application(application.OpalApplication):
-    pass
-
-
-from guidelines.tests import dummy_options_module
 
 import django
 django.setup()
 
 from django.test.runner import DiscoverRunner
 test_runner = DiscoverRunner(verbosity=1)
-failures = test_runner.run_tests(['guidelines', ])
+if len(sys.argv) == 2:
+    failures = test_runner.run_tests([sys.argv[-1], ])
+else:
+    failures = test_runner.run_tests(['guidelines', ])
 if failures:
     sys.exit(failures)
